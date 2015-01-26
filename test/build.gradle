@@ -1,0 +1,33 @@
+buildscript {
+    dependencies {
+        repositories {
+            mavenCentral()
+
+            maven {
+                url 'https://oss.sonatype.org/content/repositories/releases/'
+            }
+
+            maven {
+                url 'https://oss.sonatype.org/content/repositories/snapshots/'
+            }
+        }
+
+        classpath 'com.jimdo.gradle:gradle-apt-plugin:0.5-SNAPSHOT'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'apt'
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    apt project(':lib')
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'com.google.testing.compile:compile-testing:0.5'
+}
